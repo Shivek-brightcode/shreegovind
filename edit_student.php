@@ -18,7 +18,7 @@ session_start();
 			
 			  $datas=mysqli_query($link,$data);
 			  $result=mysqli_fetch_array($datas);
-			 
+ //echo '<pre>';print_r($result);echo '</pre>';			 
 	
  ?>
 
@@ -39,19 +39,19 @@ session_start();
 <![endif]-->
 <script>
 function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result)
-                        .width(120)
-                        .height(135);
-                };
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(120)
+                    .height(135);
+            };
 
-                reader.readAsDataURL(input.files[0]);
-            }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 	
 	
 	
@@ -70,23 +70,23 @@ function readURL(input) {
      <div class="row">
      <div class="col-md-12">
      <div class="row"  id="remove_msg" style="height: 20px;">
-						<?php if(isset($_SESSION['success'])){
-                            ?>
-                          <div class="col-md-12 text-center text-success">
-                               <i class="fa fa-check "></i><?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
-                               
-                            </div>
-                            <?php
-                          }
-                          else if(isset($_SESSION['err'])){
-                              ?>
-                                 <div class="col-md-12 text-danger text-center">
-                                     <i class="fa fa-times"></i><?php echo $_SESSION['err']; unset($_SESSION['err']); ?>
-                                    
-                                  </div>
-                              <?php 
-                          }
-                        ?>
+        <?php if(isset($_SESSION['success'])){
+            ?>
+            <div class="col-md-12 text-center text-success">
+                <i class="fa fa-check "></i><?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                
+            </div>
+            <?php
+            }
+            else if(isset($_SESSION['err'])){
+                ?>
+                    <div class="col-md-12 text-danger text-center">
+                        <i class="fa fa-times"></i><?php echo $_SESSION['err']; unset($_SESSION['err']); ?>
+                    
+                    </div>
+                <?php 
+            }
+        ?>
       
     	</div><!-- end of row for message--> 
  		</div><!-- end of row for message -->
@@ -112,15 +112,7 @@ function readURL(input) {
                             	<div class="row">
                                 	<div class="col-lg-5 col-md-5" ><b>Admission Date:</b></div>
                                     <div class="col-lg-7 col-md-7" >
-                                    	<input type="date" name="a_date" id="a_date" value="<?php echo $result['admission_date']; ?>" class="form-control" readonly="readonly" />
-                                    	<script>
-											Date.prototype.toDateInputValue = (function() {
-												var local = new Date(this);
-												local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-												return local.toJSON().slice(0,10);
-												});
-											document.getElementById('a_date').value = new Date().toDateInputValue();
-										</script>
+                                    	<input type="date" name="a_date" id="a_date" value="<?php echo date('Y-m-d',strtotime($result['admission_date'])); ?>" class="form-control" readonly="readonly" />
                                     </div>
                                 </div><br />
                                 
@@ -256,20 +248,18 @@ function readURL(input) {
                                     </select>
                                 </div>
                             	<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6"><b>Blood Group:</b></div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><?php //print_r($sec);?>
                                 	<select name="blood" class="form-control">
-                                     <?php $blood=array("A+","B+","AB+","O+","A-","B-","AB-","O-"); 
+                                     <?php $blood=array("Select Blood Group","A+","B+","AB+","O+","A-","B-","AB-","O-"); 
 										 $len=count($blood);
 										 $i=0;
 										 while($i!=$len){
-										 if($sec[$i]==$result['blood_group']){
+										 if($blood[$i]==$result['blood_group']){
 										 ?>
                                          	<option value="<?php echo $blood[$i]; ?>" selected="selected"><?php  echo $blood[$i]; ?></option>
-                                            <?php } else{?>
-                                             <option value="<?php echo $blood[$i]; ?>"><?php echo $blood[$i]; ?></option>
-                                            
-                                    <?php  }$i++; } ?>
-                                    	
+                                        <?php } else{?>
+                                             <option value="<?php echo $blood[$i]; ?>"><?php echo $blood[$i]; ?></option>                                            
+                                        <?php  }$i++; } ?>                                    	
                                     </select>
                                 </div>
                             </div><!--end of gender row--><br />

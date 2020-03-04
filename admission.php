@@ -39,7 +39,7 @@ session_start();
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
  
-    <script type = "text/javascript">
+    <!-- <script type = "text/javascript">
         $(document).ready(function () 
 {
           
@@ -69,11 +69,107 @@ session_start();
      });  
 
 });
-    </script>
+    </script> -->
+    <script type = "text/javascript">
+        $(document).ready(function (){
 
+    function getAge(dateString) {
+                var now = new Date();
+                var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+                var yearNow = now.getYear();
+                var monthNow = now.getMonth();
+                var dateNow = now.getDate();
+
+                var dob = new Date(dateString.substring(6,10),dateString.substring(3,5)-1,dateString.substring(0,2));
+//console.log(dateString);
+                var yearDob = dob.getYear();
+                var monthDob = dob.getMonth();
+                var dateDob = dob.getDate();
+                var age = {};
+                var ageString = "";
+                var yearString = "";
+                var monthString = "";
+                var dayString = "";
+
+
+                yearAge = yearNow - yearDob;
+
+                if (monthNow >= monthDob)
+                    var monthAge = monthNow - monthDob;
+                else {
+                    yearAge--;
+                    var monthAge = 12 + monthNow -monthDob;
+                }
+
+                if (dateNow >= dateDob)
+                    var dateAge = dateNow - dateDob;
+                else {
+                    monthAge--;
+                    var dateAge = 31 + dateNow - dateDob;
+
+                    if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                    }
+                }
+
+                age = {
+                    years: yearAge,
+                    months: monthAge,
+                    days: dateAge
+                    };
+
+                if ( age.years > 1 ) yearString = " years";
+                else yearString = " year";
+                if ( age.months> 1 ) monthString = " months";
+                else monthString = " month";
+                if ( age.days > 1 ) dayString = " days";
+                else dayString = " day";
+
+
+                if ( (age.years > 0) && (age.months > 0) && (age.days > 0) )
+                    ageString = age.years + yearString + ", " + age.months + monthString + ", and " + age.days + dayString + " old.";
+                else if ( (age.years == 0) && (age.months == 0) && (age.days > 0) )
+                    ageString = "Only " + age.days + dayString + " old!";
+                else if ( (age.years > 0) && (age.months == 0) && (age.days == 0) )
+                    ageString = age.years + yearString + " old. Happy Birthday!!";
+                else if ( (age.years > 0) && (age.months > 0) && (age.days == 0) )
+                    ageString = age.years + yearString + " and " + age.months + monthString + " old.";
+                else if ( (age.years == 0) && (age.months > 0) && (age.days > 0) )
+                    ageString = age.months + monthString + " and " + age.days + dayString + " old.";
+                else if ( (age.years > 0) && (age.months == 0) && (age.days > 0) )
+                    ageString = age.years + yearString + " and " + age.days + dayString + " old.";
+                else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )
+                    ageString = age.months + monthString + " old.";
+                else ageString = "Oops! Could not calculate age!";
+
+                return ageString;
+            }     
+      
+        $('#birth').change(function(){
+            var dob = $(this).val();
+            var newDate = formatDate(dob);
+            var letage = getAge(newDate);
+            $('#age').val(letage); 
+        })
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [day, month, year].join('/');
+    }
+});
+</script>
 <script>
 $(function() {
-	$('#dob').datepick({dateFormat: 'yyyy-mm-dd'});
+	//$('#dob').datepick({dateFormat: 'yyyy-mm-dd'});
 	
 	$('#inlineDatepicker').datepick({onSelect: showDate});
 });
@@ -83,50 +179,35 @@ function showDate(date) {
 }
 
 function readURL(input) {
-	 var fuData = document.getElementById('choose_photo_btn');
-var FileUploadPath = fuData.value;
+    var fuData = document.getElementById('choose_photo_btn');
+    var FileUploadPath = fuData.value;
 
 
-if (FileUploadPath == '') {
-    alert("Please upload an image");
-
-} else {
-    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
-
-
-
-    if (Extension == "gif" || Extension == "png" || Extension == "bmp"
-                || Extension == "jpeg" || Extension == "jpg") {
-
-
+    if (FileUploadPath == '') {
+        alert("Please upload an image");
+    } else {
+        var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+        if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
             if (fuData.files && fuData.files[0]) {
-
                 var size = fuData.files[0].size;
-
                 if(size > 50000){
                     alert("Maximum file size exceeds");
                     return;
                 }else{
                     var reader = new FileReader();
-
                     reader.onload = function(e) {
                         $('#blah').attr('src', e.target.result)
 						.width(120)
 						.height(135);
                     }
-
                     reader.readAsDataURL(fuData.files[0]);
                 }
             }
-
-    } 
-
-
-else {
-        alert("Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ");
+        }else {
+            alert("Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ");
+        }
     }
 }
-        }
 		
 		
 		
@@ -316,7 +397,9 @@ else {
                                     	
                                     </select>
                                 </div>
-                  <div class="col-lg-7 col-md-7"><input type="text" name="father" id="father" class="form-control" value="" / required=""></div>
+                    <div class="col-lg-7 col-md-7">
+                      <input type="text" name="father" id="father" class="form-control" value="" required="">
+                    </div>
                             </div><!--end of father row--><br />
                             	<div class="row">
                             	<div class="col-lg-5 col-md-5"><b>Father's Occupation:  </b></div>
@@ -342,7 +425,8 @@ else {
                         	<div class="row">
                             	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><b>Date of Birth: <span class="text-danger">*</span> </b></div>
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                	<input type="text" name="dob" id="birth" class="form-control" value="" required/>
+                                    <!-- <input type="text" name="dob" id="birth" class="form-control" value="" required/> -->
+                                    <input type="date" name="dob" id="birth" class="form-control" value="" max="<?php echo date('Y-m-d');?>" required/>
                                 </div>
                             	<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6"><b>Age:</b></div>
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">

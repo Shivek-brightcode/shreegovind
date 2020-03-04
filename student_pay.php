@@ -21,23 +21,30 @@ session_start();
 	<title> Sri Govind Middle & High School | Print </title>
 	<link rel="stylesheet" href="css/css.css" />
    <style>
+	   @page { 
+			size: A4;		   
+		}
+	   @page:left {  margin: 0.14in }
+	   @page:right {  margin: 0.17in }	   
+		
    td{
-   font-size:12px;
+	font-size:15px;
+	line-height: 21px;
    }
    .p1{
-   font-family:Arial, Helvetica, sans-serif;
-   font-size:12px;
-   margin-left:10px;
-   margin-top:0px;
-   margin-bottom:0px;
-   font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	margin-left:10px;
+	margin-top:0px;
+	margin-bottom:0px;
+	font-weight:bold;
    }
    </style>
 </head>
 <body onLoad="window.print()">
 		<form name="yearly">
         <?php 
-			for($result=1;$result<=2;$result++){
+			for($result=1;$result<=1;$result++){
 			
 		?>
 	<table align="center">
@@ -59,17 +66,11 @@ session_start();
 					<td><b>Admission No.</b>&nbsp;&nbsp;&nbsp;<?php echo $_SESSION["adm"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Date:</b> <?php echo date('d/m/Y',strtotime($_SESSION["date"]));  ?></td>
 				</tr>
 				<tr>
-					<td><b>Months: &nbsp;</b><?php echo $_SESSION["months"];
-					?> &nbsp;&nbsp;<b>Total Fee: &nbsp;</b><?php echo $_SESSION["t_amount"];
-					?></td>
+				<td><b>Months: &nbsp;</b><?php $moth = $_SESSION["months"]; $motharray = explode('/',$moth); 
+					echo date('F',strtotime($motharray[0])).'/'.date('F',strtotime($motharray[1]));?> &nbsp;&nbsp;<b>Total Fee: &nbsp;</b><?php echo $_SESSION["t_amount"];?></td>
 				</tr>
 				<tr>	
-					<td><b>Payable Amount: &nbsp;</b><?php echo $_SESSION["payable"];
-					?>
-					&nbsp;&nbsp;<b>Next Dues: &nbsp;</b><?php echo $_SESSION["dues_amt"];
-					?>
-						&nbsp;&nbsp;<b>Pay Mode: &nbsp;</b><?php echo $_SESSION["pay_mode"];
-					?></td>
+					<td><b>Payable Amount: &nbsp;</b><?php echo $_SESSION["payable"];?>&nbsp;&nbsp;<b>Pay Mode: &nbsp;</b><?php echo $_SESSION["pay_mode"];?></td>
 					<td align="right"><b>Class: </b>  <label style="text-transform:uppercase; font-family:Arial, Helvetica, sans-serif;"><?php echo $_SESSION["cls"]; ?></label></td>
 				</tr>		 		 	
 			</table>
@@ -107,8 +108,8 @@ session_start();
 						<td width="80"><?php echo $count; $count=$count+1; ?></td><td>Discount</td><td><?php echo $_SESSION["discount"]; ?></td>
 					</tr>
 					<tr>
-						<td  colspan="2"><b>Total</b></td><td><p style="margin:0px; font-weight:bold;"><?php echo number_format($_SESSION['total'],2); 
-						echo "&nbsp;("; echo $words->to_words($_SESSION['total']); echo "  only)"; ?></p></td>
+					<td colspan="2"><b>Total</b>&nbsp;&nbsp;&nbsp;<span style="margin:0px; font-weight:bold;"><?php echo number_format($_SESSION['total'],2); 
+						echo "&nbsp;("; echo $words->to_words($_SESSION['total']); echo "  only)"; ?></span></td>
 					</tr>
 			</table>
 			</td>
@@ -129,18 +130,12 @@ session_start();
 					<td><b>Admission No.</b>&nbsp;&nbsp;&nbsp;<?php echo $_SESSION["adm"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Date:</b> <?php echo date('d/m/Y',strtotime($_SESSION["date"]));  ?></td>
 				</tr>
 				<tr>
-					<td><b>Months: &nbsp;</b><?php echo $_SESSION["months"];
-					?> &nbsp;&nbsp;<b>Total Fee: &nbsp;</b><?php echo $_SESSION["t_amount"];
-					?></td>
+					<td><b>Months: &nbsp;</b><?php $moth = $_SESSION["months"]; $motharray = explode('/',$moth); 
+					echo date('F',strtotime($motharray[0])).'/'.date('F',strtotime($motharray[1]));?> &nbsp;&nbsp;<b>Total Fee: &nbsp;</b><?php echo $_SESSION["t_amount"];?></td>
 				</tr>
 				<tr>	
-					<td><b>Payable Amount: &nbsp;</b><?php echo $_SESSION["payable"];
-					?>
-					&nbsp;&nbsp;<b>Next Dues: &nbsp;</b><?php echo $_SESSION["dues_amt"];
-					?>
-						&nbsp;&nbsp;<b>Pay Mode: &nbsp;</b><?php echo $_SESSION["pay_mode"];
-					?></td>
-					<td align="right"><b>Class: </b>  <label style="text-transform:uppercase; font-family:Arial, Helvetica, sans-serif;"><?php echo $_SESSION["cls"]; ?></label></td>
+					<td><b>Payable Amount: &nbsp;</b><?php echo $_SESSION["payable"];?>&nbsp;&nbsp;<b>Pay Mode: &nbsp;</b><?php echo $_SESSION["pay_mode"];?></td>
+					<td><b>Class: </b>  <label style="text-transform:uppercase; font-family:Arial, Helvetica, sans-serif;"><?php echo $_SESSION["cls"]; ?></label></td>
 				</tr>		 		 	
 			</table>
 			<table width="400" frame="box" align="center">
@@ -177,14 +172,14 @@ session_start();
 						<td width="80"><?php echo $count; $count=$count+1; ?></td><td>Discount</td><td><?php echo $_SESSION["discount"]; ?></td>
 					</tr>
 					<tr>
-						<td  colspan="2"><b>Total</b></td><td><p style="margin:0px; font-weight:bold;"><?php echo number_format($_SESSION['total'],2); 
-						echo "&nbsp;("; echo $words->to_words($_SESSION['total']); echo "  only)"; ?></p></td>
+						<td colspan="2"><b>Total</b>&nbsp;&nbsp;&nbsp;<span style="margin:0px; font-weight:bold;"><?php echo number_format($_SESSION['total'],2); 
+						echo "&nbsp;("; echo $words->to_words($_SESSION['total']); echo "  only)"; ?></span></td>
 					</tr>
 			</table>
 			</td>
 		</tr>
 	</table>
-    <div style="border-bottom:1px dotted #000000; height:30px;"></div><br><br>
+    <div style="border-bottom:1px dotted #000000; height:10px;"></div><br>
     <?php }?>
     
 

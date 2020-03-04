@@ -398,7 +398,6 @@ function showDate(date) {
         });
     });  
 });  
-<!-------------------send months and months name----------->
 
  function calTo(data)
  {
