@@ -1,14 +1,11 @@
 <?php
 error_reporting(0);
-	   //$caste=$_GET['caste'];
-       
-  
-
-//$link=mysqli_connect("localhost","root","","sms");
+	   
 
 include "dbconnection.php";
-$query="SELECT * from new_registration";
-$result=@mysqli_query($link,$query) or die("Couldn't execute query:<br>" . mysql_error(). "<br>" . mysql_errno());  
+//$query="SELECT * from new_registration";
+$query="SELECT t1.admission_no, t1.admission_date, t1.roll_no, t1.NAME, t1.father_name, t1.mother_name, t1.class, t1.section, t1.SESSION, t1.dob, t1.gender, t2.t_address, t3.mob FROM new_registration as t1 JOIN address as t2 On t1.admission_no=t2.admission_no JOIN contact_info as t3 On t1.admission_no=t3.admission_no";
+$result=@mysqli_query($link,$query) or die("Couldn't execute query");  
 
 $filename="students";
 $file_ending = "xls";
@@ -21,15 +18,12 @@ header("Expires: 0");
 //define separator (defines columns in excel & tabs in word)
 $sep = "\t"; //tabbed character
 //start of printing column names as names of MySQL fields
-$fieldinfo=mysqli_fetch_fields($result);
-
-  foreach ($fieldinfo as $val)
+$ownname = array('Admission No','Admission Date','Roll No','Name','Father Name','Mother Name','Class','section','Session','Date Of Birth','Gender','Address','Mobile No');
+  foreach ($ownname as $val)
     {
-    printf($val->name . "\t");
+       printf($val . "\t");
+               
     }
-//for ($i = 0; $i < mysqli_num_fields($result); $i++) {
-//echo mysqli_fetch_fields($result,$i) . "\t";
-//}
 print("\n");    
 //end of printing column names  
 //start while loop to get data

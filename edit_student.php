@@ -14,10 +14,15 @@ session_start();
   include('dbconnection.php');
    $std_id=$_REQUEST["student_id"];
    
- $data="SELECT t1.admission_date,t1.roll_no,t1.session,t1.class,t1.section,t1.name,t1.father_name,t1.father_occup,t1.mother_name,t1.mother_occup,t1.dob,t1.age,t1.gender,t1.blood_group,t1.religion,t1.caste,t1.adhar_no,t1.identification,t1.previous_school,t1.previous_class,t1.promoted,t1.transfer_certificate,t1.marksheet,t1.caste_certificate,t1.domecile,t1.photo,t2.mob,t2.alt_mobile,t2.phone,t2.email,t3.t_address,t3.t_state,t3.t_district,t3.t_area,t3.t_pincode,t3.p_address,t3.p_state,t3.p_district,t3.p_area,t3.p_pincode,t4.total  FROM new_registration t1,contact_info t2,address t3,fee_detail t4  WHERE t1.admission_no=t2.admission_no and  t1.admission_no=t3.admission_no and t1.admission_no=t3.admission_no and t1.admission_no=t4.admission_no and t1.admission_no='$std_id'";
-			
-			  $datas=mysqli_query($link,$data);
-			  $result=mysqli_fetch_array($datas);
+    $data="SELECT t1.admission_date,t1.roll_no,t1.session,t1.class,t1.section,t1.name,t1.father_name,t1.father_occup,t1.mother_name,
+        t1.mother_occup,t1.dob,t1.age,t1.gender,t1.blood_group,t1.religion,t1.caste,t1.adhar_no,t1.identification,t1.previous_school,
+        t1.previous_class,t1.promoted,t1.transfer_certificate,t1.marksheet,t1.caste_certificate,t1.domecile,t1.photo,t2.mob,t2.alt_mobile,
+        t2.phone,t2.email,t3.t_address,t3.t_state,t3.t_district,t3.t_area,t3.t_pincode,t3.p_address,t3.p_state,t3.p_district,t3.p_area,
+        t3.p_pincode,t4.total,t4.m_fee  FROM new_registration t1, contact_info t2, address t3, fee_detail t4  WHERE t1.admission_no=t2.admission_no and 
+        t1.admission_no=t3.admission_no and t1.admission_no=t3.admission_no and t1.admission_no=t4.admission_no and t1.admission_no='$std_id'";
+	//echo $data;		
+    $datas=mysqli_query($link,$data);
+    $result=mysqli_fetch_array($datas);
  //echo '<pre>';print_r($result);echo '</pre>';			 
 	
  ?>
@@ -462,22 +467,26 @@ function readURL(input) {
                             </div>
                           </div><!--end of address tab-->
                           <div id="fee" class="tab-pane fade"><br/>
-                          		<div class="row">
-                                <?php if($role=='admin'){ ?>
-                          			<div class="col-md-1"></div>
-                                    <div class="col-md-4"><b>Total Fee:</b></div>
-                                    <div class="col-md-7"><input type="text" name="tamount" id="tamount" value="<?php echo $result['total']; ?>" class="form-control" onkeyup="getAmount(this.value);" /></div>
-                                    <?php } else if($role=='user'){ ?>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-4"><b>Total Fee:</b></div>
-                                    <div class="col-md-7"><input type="text" name="tamount" readonly="readonly" id="tamount" value="<?php echo $result['total']; ?>" class="form-control"/></div>
-                                    <?php } ?>
-                                </div><!--end of row 1-->
-                                <br/>
-                          		
-                            
-                          		
-                          </div><!--end of fee tab-->
+                            <div class="row">
+                               
+                                <div class="col-md-1"></div>
+                                <div class="col-md-4"><b>Total Fee:</b></div>
+                                <div class="col-md-7">
+                                    <input type="text" name="tamount" id="tamount" value="<?php echo $result['total']; ?>" class="form-control" onkeyup="getAmount(this.value);" />
+                                </div>
+                                    
+                            </div><!--end of row 1-->
+                            <div class="row" style='margin-top:10px'>
+                               
+                                <div class="col-md-1"></div>
+                                <div class="col-md-4"><b>Monthly Fee:</b></div>
+                                <div class="col-md-7">
+                                    <input type="text" name="m_fee" id="m_fee" value="<?php echo $result['m_fee']; ?>" class="form-control" onkeyup="getAmount(this.value);" />
+                                </div>
+                                    
+                            </div><!--end of row 1-->
+                            <br/>                      		
+                           </div><!--end of fee tab-->
                         </div><!--end of nav tab-->
                     </div><!-- end of right section -->
                 </div><!-- end of form row 1 -->

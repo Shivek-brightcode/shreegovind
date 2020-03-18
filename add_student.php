@@ -3,6 +3,7 @@ session_start();
 include('dbconnection.php');
 if(isset($_POST['submit'])){
 	//echo "hii";
+	//echo '<pre>'; print_r($_POST); echo '</pre>';die;
 	$adm=$_POST['adm'];
 	$date=$_POST['a_date'];
 	$rollno=$_POST['rollno'];

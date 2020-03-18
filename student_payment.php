@@ -139,7 +139,7 @@ function showDate(date) {
                     	<div class="row">
                         	<div class="col-lg-1 col-md-1"></div>
                         	<div class="col-lg-3 col-md-3"><b>Admission No:</b></div>
-                        	<div class="col-lg-5 col-md-8"><input type="text" name="adm" id="adm" class="form-control" /*onkeyup="getId(this.value);"*/ required/></div>
+                        	<div class="col-lg-5 col-md-8"><input type="text" name="adm" id="adm" class="form-control" required/></div>
                         </div><!--end of left row 1-->
                         <br />
                       <div class="row">

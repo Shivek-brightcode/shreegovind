@@ -46,22 +46,19 @@ session_start();
         	<div class="table-responsive">
             	<table class="table table-condensed table-hover table-striped table-bordered">
                 	<thead>
-                    	<th colspan="11" style="font-size:18px;background-color:#06296b; color:#E4D6D6;"> Student Details</th>
-                    	
+                    	<th colspan="11" style="font-size:18px;background-color:#06296b; color:#E4D6D6;"> Student Details</th>                    	
                     </thead>
-                	<thead>
-                    	
+                	<thead>                    	
                     	<th style="text-align:center">Adm. No.</th>
                     	<th style="text-align:center">Name</th>
-                    	<th  style="text-align:center">Father</th>
+                    	<th style="text-align:center">Father</th>
                     	<th style="text-align:center">Adm. Date</th>
                     	<th style="text-align:center">Roll No</th>
                     	<th style="text-align:center">Section</th>
-                    	<th  style="text-align:center">Class</th>
+                    	<th style="text-align:center">Class</th>
                     	<th style="text-align:center">DOB</th>
                         <th style="text-align:center">AdharNo</th>
-                    	<th style="text-align:center">Action</th>
-                        
+                    	<th style="text-align:center">Action</th>                        
                     </thead>
  <?php
    $count=12;
@@ -94,7 +91,7 @@ session_start();
                 <td style="text-align:center"><?php echo $result['adhar_no']; ?></td>
                  <td style="text-align:center">
                  <?php if($role=='admin'){ ?>
-                  <a href='view_student.php?student_id=<?php echo $result['admission_no']; ?>' onclick='document.getElementById('form').submit(); return false;'><span class="fa fa-street-view"></span></a>&nbsp;&nbsp;
+                  <a href='view_student.php?student_id=<?php echo $result['admission_no']; ?>' onclick="document.getElementById('form').submit(); return false;"><span class="fa fa-street-view"></span></a>&nbsp;&nbsp;
 				  <a href='edit_student.php?student_id=<?php echo $result['admission_no']; ?>' onclick='document.getElementById('form').submit(); return false;'><span class="fa fa-edit"></span> </a>&nbsp;&nbsp;
   
 				  <a href='delete_student.php?student_id=<?php echo $result['admission_no']; ?>' ><span class="fa fa-trash"></a>

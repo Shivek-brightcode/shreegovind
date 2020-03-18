@@ -40,6 +40,7 @@ function getClass(data){
 </script>
 <script>
 window.onload=function(){
+	
 	var cls='<?php echo $_GET['cls']; ?>';
 	var page='<?php echo $pg; ?>';
 	if(cls!=""){
@@ -136,9 +137,9 @@ function getpromoteClass(data1){
    
   </div><!-- end of container -->
    
-  <div id="ShowSelectedValueDiv">
+  	<div id="ShowSelectedValueDiv">
 			<center><img src="images/std_rec.jpg" width="350" height="348" ></center>
-			</div>
+	</div>
   <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="bootstrap/js/jquery.js" type="text/javascript"></script>
   <script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>

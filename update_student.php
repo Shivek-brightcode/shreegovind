@@ -5,7 +5,7 @@ include('dbconnection.php');
 
 if(isset($_POST['submit'])){
 	
-	
+	//echo '<pre>'; print_r($_POST); echo '</pre>';die;
 	$date=$_POST['a_date'];
 	$rollno=$_POST['rollno'];
 	$session=$_POST['session']; 
@@ -46,8 +46,9 @@ if(isset($_POST['submit'])){
 	$phone=$_POST['phone'];
 	$email=$_POST['email'];
 	$tamount=$_POST['tamount'];
-	$advance=$_POST['advance'];
-	$ramount=$_POST['ramount'];
+	$monthlyfees=$_POST['m_fee'];
+	//$advance=$_POST['advance'];
+	//$ramount=$_POST['ramount'];
 	
 	$schoolname=$_POST['schoolname'];
 	$laststudy=$_POST['laststudy'];
@@ -75,31 +76,31 @@ if(isset($_POST['submit'])){
 	$rs=mysqli_query($link,$query);
 	
 	$std_fee_updation="UPDATE `student_payment_updation` SET `date`='',`months`='',`name`='$name',`father_name`='$father',`address`='$address',`class`='$class',`total_fee`='$tamount',`payable_amount`='',`dues_amount`='',`user`='' WHERE admission_no='$adm'";
-		$r3=mysqli_query($link,$std_fee_updation);
+	$r3=mysqli_query($link,$std_fee_updation);
 		
-		$address="UPDATE `address` SET `t_address`='$taddress',`t_state`='$tstate',`t_district`='$tdistrict',`t_area`='$tarea',`t_pincode`='$tpin',`p_address`='$paddress',`p_state`='$pstate',`p_district`='$pdistrict',`p_area`='$parea',`p_pincode`='$ppin' WHERE admission_no='$adm'";
-		$r=mysqli_query($link,$address);
+	$address="UPDATE `address` SET `t_address`='$taddress',`t_state`='$tstate',`t_district`='$tdistrict',`t_area`='$tarea',`t_pincode`='$tpin',`p_address`='$paddress',`p_state`='$pstate',`p_district`='$pdistrict',`p_area`='$parea',`p_pincode`='$ppin' WHERE admission_no='$adm'";
+	$r=mysqli_query($link,$address);
 		
-		$contact="update `contact_info` set mob='$mobile',	alt_mobile='$amobile',phone='$phone',email='$email' where admission_no='$adm'";
-		$r1=mysqli_query($link,$contact);
-		
-		
-		$fee="update `fee_detail` set total='$tamount' where admission_no='$adm'";
-		$r2=mysqli_query($link,$fee);
+	$contact="update `contact_info` set mob='$mobile',	alt_mobile='$amobile',phone='$phone',email='$email' where admission_no='$adm'";
+	$r1=mysqli_query($link,$contact);
+	
+	
+	$fee="update `fee_detail` set total='$tamount',m_fee='$monthlyfees' where admission_no='$adm'";
+	$r2=mysqli_query($link,$fee);
 	
 	if($rs>0 && $r3>0 && $r>0 && $r1>0 && $r2>0){
 	
 		/*$std_payment="update `student_payments` set address='$address' where admission_no='$adm'";
 		$r4=mysqli_query($link,$std_payment);
 		/*echo "<script>alert('data updated successfully');</script>";*/
-		$msg="data updated successfully!";
+		$msg="Data updated successfully!";
 		$_SESSION['success']=$msg;
 		move_uploaded_file($temp,$photo);
 		header("Location:search_session_wise.php?pagename=search");
 	   echo "<script>location='search_session_wise.php?pagename=search'</script>";
 	}
 	else{
-		$msg="data not updated!";
+		$msg="Data not updated!";
 		$_SESSION['err']=$msg;
 		header("Location:search_session_wise.php?pagename=search");
 	    echo "<script>location='search_session_wise.php?pagename=search'</script>";

@@ -513,7 +513,7 @@ function readURL(input) {
                               <li class="active"><a data-toggle="pill" href="#taddress">Temporary Address</a></li>
                               <li><a data-toggle="pill" href="#paddress">Permanent Address</a></li>
                               <li><a data-toggle="pill" href="#cinfo">Contact Info</a></li>
-                              <li><a data-toggle="pill" href="#">Local Address</a></li>
+                              <!-- <li><a data-toggle="pill" href="#">Local Address</a></li> -->
                             </ul>                          
                             <div class="tab-content">
                                <div id="taddress" class="tab-pane fade in active"><br />
@@ -620,7 +620,7 @@ function readURL(input) {
                                         <div class="col-md-1"></div>
                                         <div class="col-md-2"><b>Mobile: <span class="text-danger">*</span> </b></div>
                                         <div class="col-md-9">
-                                        	<input type="text" name="mobile" id="mobile" class="form-control" value="" maxlength="10" value='0'/>
+                                        	<input type="text" name="mobile" id="mobile" class="form-control"  maxlength="10"/>
                                         </div>
                                     </div><!-- end of taddress row 1-->
                                     <br/>
@@ -628,7 +628,7 @@ function readURL(input) {
                                         <div class="col-md-1"></div>
                                         <div class="col-md-2"><b>Alternate Mobile:</b></div>
                                         <div class="col-md-9">
-                                        	<input type="text" name="amobile" id="amobile" class="form-control" maxlength="10" value="" />
+                                        	<input type="text" name="amobile" id="amobile" class="form-control" maxlength="10"  />
                                         </div>
                                     </div><!-- end of taddress row 2-->
                                     <br/>
@@ -636,7 +636,7 @@ function readURL(input) {
                                         <div class="col-md-1"></div>
                                         <div class="col-md-2"><b>Phone:</b></div>
                                         <div class="col-md-9">
-                                        	<input type="text" name="phone" id="phone" class="form-control" value="" />
+                                        	<input type="text" name="phone" id="phone" class="form-control"  />
                                         </div>
                                     </div><!-- end of taddress row 3-->
                                     <br/>
@@ -644,12 +644,12 @@ function readURL(input) {
                                         <div class="col-md-1"></div>
                                         <div class="col-md-2"><b>E-Mail:</b></div>
                                         <div class="col-md-9">
-                                        	<input type="text" name="email" id="email" class="form-control" value="" />
+                                        	<input type="text" name="email" id="email" class="form-control"  />
                                         </div>
                                     </div><!-- end of taddress row 4-->
                                     <br/>
                                 </div><!-- end of cinfo-->
-								<div  class="tab-pane fade"><br />
+								<!-- <div  class="tab-pane fade"><br />
                                  <h4>&nbsp;Enter Local Address Information</h4><br/>
                                    <div class="row">
                                         <div class="col-md-1"></div>
@@ -657,7 +657,7 @@ function readURL(input) {
                                         <div class="col-md-9">
                                         	<input type="text" name="mobile" id="mobile" class="form-control" value="" maxlength="10" />
                                         </div>
-                                    </div><!-- end of taddress row 1-->
+                                    </div>
                                     <br/>
                                     <div class="row">
                                         <div class="col-md-1"></div>
@@ -665,7 +665,7 @@ function readURL(input) {
                                         <div class="col-md-9">
                                         	<input type="text" name="amobile" id="amobile" class="form-control" maxlength="10" value="" />
                                         </div>
-                                    </div><!-- end of taddress row 2-->
+                                    </div>
                                     <br/>
                                     <div class="row">
                                         <div class="col-md-1"></div>
@@ -673,7 +673,7 @@ function readURL(input) {
                                         <div class="col-md-9">
                                         	<input type="text" name="phone" id="phone" class="form-control" value="" />
                                         </div>
-                                    </div><!-- end of taddress row 3-->
+                                    </div>
                                     <br/>
                                     <div class="row">
                                         <div class="col-md-1"></div>
@@ -681,9 +681,9 @@ function readURL(input) {
                                         <div class="col-md-9">
                                         	<input type="text" name="email" id="email" class="form-control" value="" />
                                         </div>
-                                    </div><!-- end of taddress row 4-->
+                                    </div>
                                     <br/>
-                                </div><!-- end of cinfo-->								
+                                </div>							 -->
                             </div>
                           </div><!--end of address tab-->						  						  						  						  						  						  						  
                           <div id="fee" class="tab-pane fade"><br/>
